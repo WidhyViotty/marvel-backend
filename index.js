@@ -10,9 +10,8 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
-    console.log("test");
     const response = await axios.get(
-      `https://marvel02-backend.herokuapp.com/characters?apiKey=${process.env.apiKey}&limit=${req.query.limit}&skip=${req.query.skip}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.apiKey}&limit=${req.query.limit}&skip=${req.query.skip}`
     );
     res.json(response.data);
   } catch (error) {
@@ -23,7 +22,7 @@ app.get("/characters", async (req, res) => {
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://marvel02-backend.herokuapp.com/comics?apiKey=${process.env.apiKey}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.apiKey}`
     );
     res.json(response.data);
   } catch (error) {
@@ -47,7 +46,7 @@ app.get("/character/:characterId", async (req, res) => {
   try {
     console.log(req.params);
     const response = await axios.get(
-      `https://marvel02-backend.herokuapp.com/character/${character._id}?apiKey=${process.env.apiKey}`
+      `https://lereacteur-marvel-api.herokuapp.com/character/${character._id}?apiKey=${process.env.apiKey}`
     );
     res.json(response.data);
   } catch (error) {
