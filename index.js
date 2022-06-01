@@ -10,10 +10,17 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
-    const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.apiKey}&limit=${req.query.limit}&skip=${req.query.skip}`
-    );
-    res.json(response.data);
+    if (req.query.name) {
+      const response = await axios.get(
+        `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.apiKey}&limit=${req.query.limit}&skip=${req.query.skip}&name=${req.query.name}`
+      );
+      res.json(response.data);
+    } else {
+      const response = await axios.get(
+        `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.apiKey}&limit=${req.query.limit}&skip=${req.query.skip}`
+      );
+      res.json(response.data);
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
